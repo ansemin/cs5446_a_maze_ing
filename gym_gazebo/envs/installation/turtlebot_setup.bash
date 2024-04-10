@@ -11,6 +11,13 @@ chmod +x catkin_ws/src/turtlebot_simulator/turtlebot_gazebo/env-hooks/25.turtleb
 bash catkin_ws/src/turtlebot_simulator/turtlebot_gazebo/env-hooks/25.turtlebot-gazebo.sh.em
 
 #add turtlebot launch environment variable
+# added by brina
+if [ -z "$GYM_GAZEBO_WORLD_SIMPLE_MAZE" ]; then
+  bash -c 'echo "export GYM_GAZEBO_WORLD_SIMPLE_MAZE="`pwd`/../assets/worlds/simple_maze.world >> ~/.bashrc'
+else
+  bash -c 'sed "s,GYM_GAZEBO_WORLD_SIMPLE_MAZE=[^;]*,'GYM_GAZEBO_WORLD_SIMPLE_MAZE=`pwd`/../assets/worlds/simple_maze.world'," -i ~/.bashrc'
+fi
+
 if [ -z "$GYM_GAZEBO_WORLD_MAZE" ]; then
   bash -c 'echo "export GYM_GAZEBO_WORLD_MAZE="`pwd`/../assets/worlds/maze.world >> ~/.bashrc'
 else
